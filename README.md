@@ -34,8 +34,8 @@ sistema-educativo-microservicios/
 ### Clonar el repositorio:
 
 ```sh
-git clone https://github.com/tu_usuario/sistema-educativo-microservicios.git
-cd sistema-educativo-microservicios
+git clone https://github.com/RichardZam/sistema-educativo-microservicios-RichardZambrano.git
+cd sistema-educativo-microservicios-RichardZambrano
 ```
 
 ### Construir y ejecutar los microservicios con Docker Compose:
