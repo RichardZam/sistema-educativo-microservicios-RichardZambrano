@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/asignaturas-servicio/asignaturas-servicio.iml" filepath="$PROJECT_DIR$/asignaturas-servicio/asignaturas-servicio.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/sistema-educativo-microservicios-RichardZambrano.iml" filepath="$PROJECT_DIR$/.idea/sistema-educativo-microservicios-RichardZambrano.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,44 +1,122 @@
-# Sistema Educativo - Microservicios
-## 📌 Descripcion
-Este proyecto implementa un sistema educativo distribuido basado en microservicios utilizando Spring Boot y Spring Cloud. El sistema permite gestionar usuarios (estudiantes y docentes), asignaturas y matrículas de forma modular, garantizando escalabilidad y facilidad de mantenimiento.
+# 🎓 Sistema Educativo - Microservicios
+
+## 📌 Descripción General
+Este proyecto es parte del **Parcial 2 - Microservicios** del curso de Ingeniería de Sistemas. Se implementa un **sistema educativo distribuido** utilizando **Spring Boot** y **Spring Cloud**, donde se gestiona la información de usuarios (estudiantes y docentes), asignaturas y matrículas, aplicando conceptos modernos de arquitectura basada en microservicios.
 
 ## 🔍 Enfoque Distribuido
-El sistema se divide en varios microservicios independientes, cada uno con su propia base de datos y lógica de negocio. La comunicación entre microservicios se maneja mediante Feign Client, y se utiliza Eureka Server para el descubrimiento de servicios. Además, se implementa seguridad con JWT, monitoreo con Spring Boot Actuator y despliegue mediante Docker y Docker Compose.
+El sistema está compuesto por múltiples microservicios independientes, cada uno con su propia base de datos, configuraciones, y responsabilidades bien definidas. La arquitectura incluye:
+- **Descubrimiento de servicios** con **Eureka**
+- **Configuración centralizada** con **Spring Cloud Config**
+- **Seguridad** mediante JWT
+- **Comunicación interna** con Feign Client
+- **Monitorización** con Spring Boot Admin y Actuator
+- **Contenerización y orquestación** con Docker y Docker Compose
 
-## 📂 Estructura del Proyecto
+---
 
-```graphql  
-sistema-educativo-microservicios/
-│── usuarios-servicio/        # Microservicio de gestión de estudiantes y docentes  
-│── asignaturas-servicio/     # Microservicio para CRUD de materias  
-│── matriculas-servicio/      # Microservicio de matrículas de estudiantes  
-│── config-server/            # Servidor de configuración centralizada  
-│── eureka-server/            # Servidor de descubrimiento de servicios  
-│── README.md                 # Descripción del proyecto  
-│── docker-compose.yml        # Orquestación de servicios  ```
+## 🏗️ Estructura del Proyecto
+
+```plaintext
+sistema-educativo-microservicios-RichardZambrano/
+│
+├── usuarios-servicio/        # Gestión de estudiantes y docentes
+├── asignaturas-servicio/     # CRUD de materias
+├── matriculas-servicio/      # Registro de estudiantes en materias
+│
+├── config-server/            # Configuración centralizada (Spring Cloud Config)
+├── eureka-server/            # Descubrimiento de servicios (Eureka)
+├── monitor-admin/            # Consola de monitoreo (Spring Boot Admin)
+│
+├── docker-compose.yml        # Orquestación completa con Docker
+└── README.md                 # Documentación del proyecto
 ```
-## 🚀 Tecnologías Utilizadas
-- Spring Boot (Microservicios)
 
-- Spring Cloud (Config Server, Eureka)
+## ⚙️ Microservicios Implementados
+📘 ``usuarios-servicio``
+- Gestión de usuarios (estudiantes y docentes)
 
-- Spring Security & JWT (Autenticación)
+- Autenticación con Spring Security y JWT
 
-- Feign Client (Comunicación entre microservicios)
+- Endpoints protegidos y roles definidos
 
-- PostgreSQL / MySQL (Bases de datos)
+📕 ``asignaturas-servicio``
+- CRUD completo de materias
 
-- Docker & Docker Compose (Contenerización y despliegue)
+- Persistencia en PostgreSQL
 
-## 📖 Instalación y Ejecución
-### Clonar el repositorio:
+📗 ``matriculas-servicio``
+- Registro de estudiantes en asignaturas
 
-```sh
+- Comunicación vía Feign con los otros dos microservicios
+
+## 🔄 Comunicación entre Microservicios
+- Se utiliza Feign Client para consumir datos entre microservicios
+
+- ``matriculas-servicio`` consume endpoints de:
+
+- ``usuarios-servicio para`` obtener estudiantes/docentes
+
+- ``asignaturas-servicio`` para obtener materias
+
+- Eureka permite que cada servicio se registre y se descubran dinámicamente
+
+## 🛡️ Seguridad con JWT
+- ``usuarios-servicio`` provee endpoints para autenticación ``(/auth/login)``
+
+- Se generan y validan tokens JWT
+
+-Endpoints protegidos según roles (``ADMIN``, ``DOCENTE``, ``ESTUDIANTE``, etc.)
+
+- Seguridad manejada con filtros y configuraciones de Spring Security
+
+## 📊 Monitoreo y Salud del Sistema
+- Se usa Spring Boot Actuator para exponer endpoints como ``/actuator/health``
+
+- Consola web de monitoreo con Spring Boot Admin ``(monitor-admin)``
+
+- Se monitorean servicios registrados automáticamente vía Eureka
+
+## 🧪 Pruebas
+- Se implementan pruebas unitarias y de integración con Spring Boot Test
+
+- Cobertura básica garantizada por microservicio
+
+- Tests adicionales pueden realizarse desde Postman (colección opcional)
+
+## 🐳 Despliegue con Docker
+- Cada microservicio contiene su propio Dockerfile, y el entorno completo se despliega con docker-compose.yml.
+
+### 🔧 Requisitos
+- Docker
+
+- Docker Compose
+
+- Git
+
+## ▶️ Pasos para ejecutar:
+```bash
+
 git clone https://github.com/RichardZam/sistema-educativo-microservicios-RichardZambrano.git
 cd sistema-educativo-microservicios-RichardZambrano
-```
-
-### Construir y ejecutar los microservicios con Docker Compose:
-```sh
 docker-compose up --build
 ```
+### 🌐 Accesos:
+- Eureka: http://localhost:8761
+
+- Config Server: http://localhost:8888
+
+- Monitor Admin: http://localhost:8090
+
+- Servicios (puertos expuestos):
+
+- Usuarios: 8081
+
+- Asignaturas: 8082
+
+- Matrículas: 8083
+
+## 🧾 Datos Personales
+- Nombre: Richard Zambrano Diaz Y Stiven David Zapatas Crastro
+- Carrera: Ingeniería de Sistemas
+- Parcial: 2 – Microservicios
+- Repositorio: GitHub - sistema-educativo-microservicios-RichardZambrano
